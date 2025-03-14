@@ -22,18 +22,21 @@ return new class extends Migration
                     ->after('remember_token')
                     ->comment('Telegram user identifier');
             }
-            
+
             if (!Schema::hasColumn('users', 'telegram_avatar_url')) {
                 // Add avatar_url if it doesn't exist
                 $table->string('telegram_avatar_url')->nullable()
+                    ->after('telegramId')
                     ->comment('URL to user telegram avatar image');
             }
-            
+
             if (!Schema::hasColumn('users', 'telegram_photo_path')) {
                 // Add profile_photo_path if it doesn't exist
                 $table->string('telegram_photo_path')->nullable()
+                    ->after('telegram_avatar_url')
                     ->comment('Local path to user profile photo');
             }
+            $table->string('email')->nullable()->change();
         });
     }
 
@@ -50,11 +53,11 @@ return new class extends Migration
             if (Schema::hasColumn('users', 'telegramId')) {
                 $table->dropColumn('telegramId');
             }
-            
+
             if (Schema::hasColumn('users', 'telegram_avatar_url')) {
                 $table->dropColumn('telegram_avatar_url');
             }
-            
+
             if (Schema::hasColumn('users', 'telegram_photo_path')) {
                 $table->dropColumn('telegram_photo_path');
             }

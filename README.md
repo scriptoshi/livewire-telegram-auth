@@ -4,10 +4,10 @@ A Laravel 12 and Livewire package that provides an easy way to authenticate user
 
 ## Requirements
 
-- PHP 8.2+
-- Laravel 12.x
-- Livewire 3.0+
-- TgWebValid 4.2+
+-   PHP 8.2+
+-   Laravel 12.x
+-   Livewire 3.0+
+-   TgWebValid 4.2+
 
 ## Installation
 
@@ -40,9 +40,9 @@ Note: Use the full token including the bot ID (numbers before the colon) and the
 
 This package adds three fields to your users table:
 
-- `telegramId` - The Telegram user identifier
-- `telegram_avatar_url` - URL to the user's Telegram avatar image
-- `telegram_photo_path` - Local path to the user's profile photo
+-   `telegramId` - The Telegram user identifier
+-   `telegram_avatar_url` - URL to the user's Telegram avatar image
+-   `telegram_photo_path` - Local path to the user's profile photo
 
 The good news is that you don't need to modify your User model's `$fillable` array. The package sets these fields directly on the model instance.
 
@@ -53,7 +53,30 @@ php artisan vendor:publish --tag=telegram-auth-migrations
 php artisan migrate
 ```
 
-### 5. (Optional) Publish views
+Migrations will make the password and Email Field `nullable` and these field will be nulled for users who authenticate via telegram. so beware if you typehint or expect these to be a string.
+
+### 5. Configure Tailwind CSS
+
+To ensure that Tailwind CSS properly processes the component styles, add this package to your content sources in your CSS file (typically `resources/css/app.css`):
+
+```css
+/* Add this line with your other @source directives */
+@source '../../vendor/scriptoshi/livewire-telegram-auth/resources/views/**/*.blade.php';
+```
+
+For example, your CSS file might look similar to this:
+
+```css
+@import "tailwindcss";
+
+@source "../views";
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/scriptoshi/livewire-telegram-auth/resources/views/**/*.blade.php';
+
+/* Rest of your CSS file */
+```
+
+### 6. (Optional) Publish views
 
 ```bash
 php artisan vendor:publish --tag=telegram-auth-views
@@ -86,7 +109,7 @@ class CustomTelegramLogin extends BaseTelegramLogin
     {
         // Your custom registration logic here
         // ...
-        
+
         // Call parent method or implement your own logic
         return parent::register($udata);
     }
@@ -107,7 +130,7 @@ And use it in your blade file:
 
 ## Credits
 
-- [Scriptoshi](https://github.com/scriptoshi)
+-   [Scriptoshi](https://github.com/scriptoshi)
 
 ## License
 
