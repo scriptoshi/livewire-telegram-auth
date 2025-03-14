@@ -22,8 +22,10 @@ composer require scriptoshi/livewire-telegram-auth
 ### 1. Add Telegram Bot Token to your .env file
 
 ```
-TELEGRAM_BOT_TOKEN=bot123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZ
+TELEGRAM_BOT_TOKEN=123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZ
 ```
+
+Note: Use the full token including the bot ID (numbers before the colon) and the token part (after the colon). The component will automatically extract the bot ID for authentication.
 
 ### 2. Add Telegram Bot configuration to your config/services.php
 

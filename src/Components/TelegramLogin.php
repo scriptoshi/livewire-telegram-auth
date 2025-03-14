@@ -21,7 +21,13 @@ class TelegramLogin extends Component
      */
     public function getBotIdProperty(): string
     {
-        return str_replace('bot', '', config('services.telegram.telegramBotToken'));
+        $token = config('services.telegram.telegramBotToken');
+        // Extract the bot ID from the token (everything before the colon)
+        if (strpos($token, ':') !== false) {
+            return explode(':', $token)[0];
+        }
+        // Fallback for tokens that might start with 'bot'
+        return str_replace('bot', '', $token);
     }
 
     /**
