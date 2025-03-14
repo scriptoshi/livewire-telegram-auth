@@ -37,6 +37,8 @@ return new class extends Migration
                     ->comment('Local path to user profile photo');
             }
             $table->string('email')->nullable()->change();
+            if (Schema::hasColumn('users', 'password'))
+                $table->string('password')->nullable()->change();
         });
     }
 
