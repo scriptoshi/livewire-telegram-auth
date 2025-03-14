@@ -1,0 +1,11 @@
+/vendor
+/node_modules
+/public
+/.idea
+/.vscode
+.DS_Store
+Thumbs.db
+.env
+.phpunit.result.cache
+composer.lock
+package-lock.json
